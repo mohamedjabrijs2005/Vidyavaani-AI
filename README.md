@@ -108,8 +108,8 @@ cd ai-teaching-assistant
 pip install -r requirements.txt
 ```
 
-### 3. Get Gemini API Key
-- Go to [aistudio.google.com](https://aistudio.google.com)
+### 3. Get Groq API Key
+- Go to [https://console.groq.com/keys]
 - Sign in → **Get API Key** → **Create API key**
 
 ### 4. Run the app
@@ -153,7 +153,7 @@ streamlit run app.py
 
 ## 👨‍💻 Developer
 
-**Mohamed Jabri J S (Safik)**
+**Mohamed Jabri J S **
 B.E. Computer Science & Engineering (IoT)
 Sri Sairam Institute of Technology, Chennai
 
