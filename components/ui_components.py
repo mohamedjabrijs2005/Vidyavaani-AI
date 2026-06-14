@@ -237,10 +237,10 @@ def render_sidebar():
 
         st.markdown("<hr>", unsafe_allow_html=True)
         st.markdown("""
-        <div style='font-size:0.8rem; color:#94a3b8 !important; line-height:1.7;'>
-            Built for <b style='color:#cbd5e1 !important;'>Connecting Dreams Foundation</b><br>
+        <div style='font-size:0.85rem; color:#cbd5e1 !important; line-height:1.7;'>
+            Built for <b style='color:#ffffff !important;'>Connecting Dreams Foundation</b><br>
             Round 2 · AI4Good Track<br><br>
-            <span style='color:#64748b !important;'>VidyaVaani = Knowledge + Voice</span>
+            <span style='color:#f8fafc !important;'>VidyaVaani = Knowledge + Voice</span>
         </div>
         """, unsafe_allow_html=True)
 
