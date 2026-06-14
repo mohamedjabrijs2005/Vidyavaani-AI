@@ -25,8 +25,7 @@ def render_header():
         section[data-testid="stSidebar"] h3,
         section[data-testid="stSidebar"] h4,
         section[data-testid="stSidebar"] p,
-        section[data-testid="stSidebar"] label,
-        section[data-testid="stSidebar"] span {
+        section[data-testid="stSidebar"] label {
             color: #e2e8f0 !important;
             font-family: 'Outfit', sans-serif !important;
         }
