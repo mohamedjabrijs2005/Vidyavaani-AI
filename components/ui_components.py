@@ -20,7 +20,13 @@ def render_header():
             background: linear-gradient(180deg, #0d1b2a 0%, #1a2e44 100%) !important;
             border-right: 1px solid rgba(255,255,255,0.06);
         }
-        section[data-testid="stSidebar"] * {
+        section[data-testid="stSidebar"] h1,
+        section[data-testid="stSidebar"] h2,
+        section[data-testid="stSidebar"] h3,
+        section[data-testid="stSidebar"] h4,
+        section[data-testid="stSidebar"] p,
+        section[data-testid="stSidebar"] label,
+        section[data-testid="stSidebar"] span {
             color: #e2e8f0 !important;
             font-family: 'Outfit', sans-serif !important;
         }
