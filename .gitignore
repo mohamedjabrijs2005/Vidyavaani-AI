@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+*.pyc
+.streamlit/secrets.toml
+vidyavaani-ai/ai-teaching-assistant/.streamlit/secrets.toml
+vidyavaani-ai/ai-teaching-assistant/.venv/
