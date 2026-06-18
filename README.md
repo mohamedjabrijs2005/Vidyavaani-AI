@@ -141,19 +141,9 @@ streamlit run app.py
 
 ---
 
-## 🎬 Demo Video Script (3 min)
-
-1. **(0:00–0:30)** — Introduce the problem: language barrier + concept difficulty in government schools
-2. **(0:30–1:15)** — Demo: Type "Photosynthesis" → Hinglish explanation → play audio
-3. **(1:15–1:50)** — Demo: Voice input mode → speak question → get spoken answer in Tamil
-4. **(1:50–2:30)** — Demo: Quiz mode → generate 3 questions → check answers
-5. **(2:30–3:00)** — Demo: Visual Map mode → concept diagram + audio narration
-
----
-
 ## 👨‍💻 Developer
 
-**Mohamed Jabri J S **
+Mohamed Jabri J S
 B.E. Computer Science & Engineering (Interner of Things)
 Sri Sairam Institute of Technology, Chennai
 
