@@ -18,7 +18,7 @@ Government school students in India often struggle with complex concepts due to 
 
 ## 🚀 Live Demo
 
-🔗 [Live App on Streamlit Cloud](#) *(replace with your deployed URL)*
+🔗 https://vidyavaani.streamlit.app/
 
 ---
 
@@ -154,7 +154,7 @@ streamlit run app.py
 ## 👨‍💻 Developer
 
 **Mohamed Jabri J S **
-B.E. Computer Science & Engineering (IoT)
+B.E. Computer Science & Engineering (Interner of Things)
 Sri Sairam Institute of Technology, Chennai
 
 ---
