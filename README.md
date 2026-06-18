@@ -39,7 +39,7 @@ Government school students in India often struggle with complex concepts due to 
 | Layer | Technology |
 |---|---|
 | Frontend | Streamlit |
-| AI / LLM | Google Gemini 1.5 Flash |
+| AI / LLM | Google Gemini 1.5 Flash, Groq API |
 | Speech-to-Text | Google Web Speech API (SpeechRecognition) |
 | Text-to-Speech | gTTS (Google Text-to-Speech) |
 | Audio Recording | audio-recorder-streamlit |
