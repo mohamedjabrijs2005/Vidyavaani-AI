@@ -145,26 +145,32 @@ elif mode == "🎤 Voice Input":
         # Check if the audio is new to prevent infinite loops on page rerun
         if st.session_state["voice_audio"] != audio_bytes:
             st.session_state["voice_audio"] = audio_bytes
-            with st.spinner("🔍 Transcribing your voice..."):
-                transcribed = transcribe_audio(audio_bytes)
-            st.session_state["voice_transcribed"] = transcribed
-
-            if transcribed:
-                try:
-                    with st.spinner("🤔 Generating explanation..."):
-                        explanation = explain_concept(transcribed, language, grade)
-                    st.session_state["voice_explanation"] = explanation
-                    with st.spinner("🔊 Generating spoken answer..."):
-                        audio_out = text_to_speech(explanation, language)
-                    st.session_state["voice_audio_out"] = audio_out
-                except QuotaError as qe:
-                    st.warning(str(qe))
-                except Exception as e:
-                    st.error(f"⚠️ Unexpected error: {e}")
-            else:
+            try:
+                with st.spinner("🔍 Transcribing your voice..."):
+                    transcribed = transcribe_audio(audio_bytes)
+                st.session_state["voice_transcribed"] = transcribed
+            except ImportError as ie:
+                st.error(f"❌ {ie}")
                 st.session_state["voice_transcribed"] = ""
                 st.session_state["voice_explanation"] = ""
                 st.session_state["voice_audio_out"] = None
+            else:
+                if transcribed:
+                    try:
+                        with st.spinner("🤔 Generating explanation..."):
+                            explanation = explain_concept(transcribed, language, grade)
+                        st.session_state["voice_explanation"] = explanation
+                        with st.spinner("🔊 Generating spoken answer..."):
+                            audio_out = text_to_speech(explanation, language)
+                        st.session_state["voice_audio_out"] = audio_out
+                    except QuotaError as qe:
+                        st.warning(str(qe))
+                    except Exception as e:
+                        st.error(f"⚠️ Unexpected error: {e}")
+                else:
+                    st.session_state["voice_transcribed"] = ""
+                    st.session_state["voice_explanation"] = ""
+                    st.session_state["voice_audio_out"] = None
 
     # Render persisted card if exists
     if st.session_state["voice_transcribed"]:

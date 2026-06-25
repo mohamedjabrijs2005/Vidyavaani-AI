@@ -40,9 +40,11 @@ def transcribe_audio(audio_bytes: bytes) -> str:
     """
     try:
         import speech_recognition as sr
-    except ImportError:
-        st.warning("SpeechRecognition is not installed. Please install it or include it in requirements.")
-        return ""
+    except ImportError as err:
+        raise ImportError(
+            "SpeechRecognition is not installed. Please install it with `pip install SpeechRecognition` "
+            "or add `SpeechRecognition==3.10.4` to requirements.txt."
+        ) from err
     import tempfile
     import os
 
