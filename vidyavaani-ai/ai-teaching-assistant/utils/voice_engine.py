@@ -38,8 +38,13 @@ def transcribe_audio(audio_bytes: bytes) -> str:
     Transcribe audio bytes to text using Google Web Speech API (free, online).
     Returns transcribed string or empty string on failure.
     """
-    import speech_recognition as sr
-    import tempfile, os
+    try:
+        import speech_recognition as sr
+    except ImportError:
+        st.warning("SpeechRecognition is not installed. Please install it or include it in requirements.")
+        return ""
+    import tempfile
+    import os
 
     recognizer = sr.Recognizer()
     with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmp:
