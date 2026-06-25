@@ -3,7 +3,7 @@ import os
 from audio_recorder_streamlit import audio_recorder
 
 from utils.ai_engine import configure_groq, explain_concept, generate_quiz, get_visual_description, QuotaError
-from utils.voice_engine import text_to_speech, autoplay_audio, transcribe_audio
+from utils.voice_engine import text_to_speech, transcribe_audio
 from components.ui_components import (
     render_header, render_sidebar,
     render_explanation_card, render_visual_card, render_quiz
@@ -50,7 +50,7 @@ if not api_key or api_key == "your-api-key-here":
         <p style='color: #78350f; margin: 0; font-size: 0.95rem; line-height: 1.6;'>
             To use this assistant, please configure your Groq API Key in the backend secrets:
             <br><br>
-            1. Open the file <b><a href="file:///c:/Users/safik/Desktop/CDG Project/vidyavaani-ai/ai-teaching-assistant/.streamlit/secrets.toml">.streamlit/secrets.toml</a></b> in your text editor.
+            1. Open the file <b><a href="file:///c:/Users/safik/Desktop/CDG%20Project/vidyavaani-ai/ai-teaching-assistant/.streamlit/secrets.toml">.streamlit/secrets.toml</a></b> in your text editor.
             2. Replace <code>"your-api-key-here"</code> with your actual Groq API key from <a href="https://console.groq.com" target="_blank">Groq Console</a>.
             3. Save the file and reload the web app.
             <br><br>
@@ -113,7 +113,6 @@ if mode == "📖 Explain Concept":
     if st.session_state["explain_result"]:
         render_explanation_card(st.session_state["explain_concept"], st.session_state["explain_result"])
         if st.session_state["explain_audio"]:
-            autoplay_audio(st.session_state["explain_audio"])
             st.audio(st.session_state["explain_audio"], format="audio/mp3")
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -177,7 +176,6 @@ elif mode == "🎤 Voice Input":
         st.success(f"📝 You asked: **{st.session_state['voice_transcribed']}**")
         render_explanation_card(st.session_state["voice_transcribed"], st.session_state["voice_explanation"])
         if st.session_state["voice_audio_out"]:
-            autoplay_audio(st.session_state["voice_audio_out"])
             st.audio(st.session_state["voice_audio_out"], format="audio/mp3")
     elif audio_bytes and not st.session_state["voice_transcribed"]:
         st.error("❌ Could not understand the audio. Please try speaking clearly or use text mode.")
@@ -270,7 +268,6 @@ elif mode == "🗺️ Visual Map":
             render_explanation_card(st.session_state["visual_concept"], st.session_state["visual_explanation"])
         
         if st.session_state["visual_audio"]:
-            autoplay_audio(st.session_state["visual_audio"])
             st.audio(st.session_state["visual_audio"], format="audio/mp3")
 
 # ── Footer ─────────────────────────────────────────────────────────────────────
@@ -278,6 +275,6 @@ st.markdown("---")
 st.markdown("""
 <div style='text-align:center; color:#64748b; font-size:0.85rem; padding-bottom:1.5rem;'>
     VidyaVaani AI · Built for Connecting Dreams Foundation · Round 2 Assignment<br>
-    Supports Tamil 🇮🇳 · Hinglish 🇮🇳 · English | Grades 6–12
+    Supports Tamil · Hinglish  · English | Grades 6-12
 </div>
 """, unsafe_allow_html=True)

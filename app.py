@@ -3,7 +3,7 @@ import os
 from audio_recorder_streamlit import audio_recorder
 
 from utils.ai_engine import configure_groq, explain_concept, generate_quiz, get_visual_description, QuotaError
-from utils.voice_engine import text_to_speech, autoplay_audio, transcribe_audio
+from utils.voice_engine import text_to_speech, transcribe_audio
 from components.ui_components import (
     render_header, render_sidebar,
     render_explanation_card, render_visual_card, render_quiz
@@ -113,7 +113,6 @@ if mode == "📖 Explain Concept":
     if st.session_state["explain_result"]:
         render_explanation_card(st.session_state["explain_concept"], st.session_state["explain_result"])
         if st.session_state["explain_audio"]:
-            autoplay_audio(st.session_state["explain_audio"])
             st.audio(st.session_state["explain_audio"], format="audio/mp3")
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -177,7 +176,6 @@ elif mode == "🎤 Voice Input":
         st.success(f"📝 You asked: **{st.session_state['voice_transcribed']}**")
         render_explanation_card(st.session_state["voice_transcribed"], st.session_state["voice_explanation"])
         if st.session_state["voice_audio_out"]:
-            autoplay_audio(st.session_state["voice_audio_out"])
             st.audio(st.session_state["voice_audio_out"], format="audio/mp3")
     elif audio_bytes and not st.session_state["voice_transcribed"]:
         st.error("❌ Could not understand the audio. Please try speaking clearly or use text mode.")
@@ -270,7 +268,6 @@ elif mode == "🗺️ Visual Map":
             render_explanation_card(st.session_state["visual_concept"], st.session_state["visual_explanation"])
         
         if st.session_state["visual_audio"]:
-            autoplay_audio(st.session_state["visual_audio"])
             st.audio(st.session_state["visual_audio"], format="audio/mp3")
 
 # ── Footer ─────────────────────────────────────────────────────────────────────
