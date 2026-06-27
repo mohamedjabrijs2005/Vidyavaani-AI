@@ -155,7 +155,8 @@ elif mode == "🎤 Voice Input":
                 st.session_state["voice_transcribed"] = ""
                 st.session_state["voice_explanation"] = ""
                 st.session_state["voice_audio_out"] = None
-            st.error(f"⚠️ Unexpected error: {e}")
+            except Exception as e:
+                st.error(f"⚠️ Unexpected error: {e}")
 
     # Render persisted card if exists
     if st.session_state["voice_transcribed"]:
