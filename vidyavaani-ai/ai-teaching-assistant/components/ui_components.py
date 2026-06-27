@@ -262,7 +262,8 @@ def render_header():
     </style>
 
     <div class="vv-banner">
-        <h1>🎓 VidyaVaani AI</h1>
+        <div>{logo_html}</div>
+        <h1 style="margin-top: 0.3rem !important;">VidyaVaani AI</h1>
         <p>Voice-Enabled AI Teaching Assistant · Connecting Dreams Foundation</p>
     </div>
     """, unsafe_allow_html=True)
