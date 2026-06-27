@@ -36,20 +36,33 @@ def render_header():
             font-size: 0.92rem;
         }
         section[data-testid="stSidebar"] [data-baseweb="select"] {
-            background-color: rgba(255,255,255,0.08) !important;
-            border: 1px solid rgba(255,255,255,0.15) !important;
+            background-color: #162a45 !important;
+            border: 1.5px solid rgba(255,255,255,0.2) !important;
             border-radius: 10px !important;
         }
+        section[data-testid="stSidebar"] [data-baseweb="select"] * {
+            color: #ffffff !important;
+        }
+        div[data-baseweb="popover"] [data-baseweb="menu"] {
+            background-color: #162a45 !important;
+            border: 1px solid rgba(255,255,255,0.15) !important;
+        }
+        div[data-baseweb="popover"] [data-baseweb="menu"] * {
+            color: #ffffff !important;
+        }
         section[data-testid="stSidebar"] [data-baseweb="radio"] > div {
-            background-color: rgba(255,255,255,0.05) !important;
+            background-color: rgba(255,255,255,0.08) !important;
             border-radius: 10px !important;
             padding: 0.6rem 0.8rem !important;
             margin-bottom: 0.3rem !important;
-            border: 1px solid rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
             transition: background 0.2s;
         }
+        section[data-testid="stSidebar"] [data-baseweb="radio"] * {
+            color: #ffffff !important;
+        }
         section[data-testid="stSidebar"] [data-baseweb="radio"] > div:hover {
-            background-color: rgba(26,115,232,0.25) !important;
+            background-color: rgba(26,115,232,0.3) !important;
         }
         section[data-testid="stSidebar"] hr {
             border-color: rgba(255,255,255,0.1) !important;
