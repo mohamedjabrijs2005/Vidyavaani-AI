@@ -142,6 +142,20 @@ elif mode == "🎤 Voice Input":
     if "voice_audio_out" not in st.session_state:
         st.session_state["voice_audio_out"] = None
 
+    # Google-style transcription input bar
+    concept_input = st.text_input(
+        "🔍 Spoken Concept / Question",
+        value=st.session_state["voice_transcribed"],
+        placeholder="Speak using the microphone above to transcribe your question...",
+        key="voice_concept_input"
+    )
+
+    # If the user edits the input manually, update session state
+    if concept_input != st.session_state["voice_transcribed"]:
+        st.session_state["voice_transcribed"] = concept_input
+        st.session_state["voice_explanation"] = ""
+        st.session_state["voice_audio_out"] = None
+
     if audio_bytes:
         # Check if the audio is new to prevent infinite loops on page rerun
         if st.session_state["voice_audio"] != audio_bytes:
@@ -150,38 +164,40 @@ elif mode == "🎤 Voice Input":
                 with st.spinner("🔍 Transcribing your voice..."):
                     transcribed = transcribe_audio(audio_bytes)
                 st.session_state["voice_transcribed"] = transcribed
+                # Trigger a rerun so the text input widget updates immediately with the transcription
+                st.rerun()
             except ImportError as ie:
                 st.error(f"❌ {ie}")
                 st.session_state["voice_transcribed"] = ""
                 st.session_state["voice_explanation"] = ""
                 st.session_state["voice_audio_out"] = None
-            else:
-                if transcribed:
-                    try:
-                        with st.spinner("🤔 Generating explanation..."):
-                            explanation = explain_concept(transcribed, language, grade)
-                        st.session_state["voice_explanation"] = explanation
-                        with st.spinner("🔊 Generating spoken answer..."):
-                            audio_out = text_to_speech(explanation, language)
-                        st.session_state["voice_audio_out"] = audio_out
-                    except QuotaError as qe:
-                        st.warning(str(qe))
-                    except Exception as e:
-                        st.error(f"⚠️ Unexpected error: {e}")
-                else:
-                    st.session_state["voice_transcribed"] = ""
-                    st.session_state["voice_explanation"] = ""
-                    st.session_state["voice_audio_out"] = None
+            except Exception as e:
+                st.error(f"❌ Transcription error: {e}")
+
+    # Generate explanation if we have a transcribed concept but no explanation yet
+    if st.session_state["voice_transcribed"] and not st.session_state["voice_explanation"]:
+        try:
+            with st.spinner("🤔 Generating explanation..."):
+                explanation = explain_concept(st.session_state["voice_transcribed"], language, grade)
+            st.session_state["voice_explanation"] = explanation
+            # Let the user manually generate narration by clicking "Speak" on the audio card if needed, or pre-generate it
+            with st.spinner("🔊 Generating spoken answer..."):
+                audio_out = text_to_speech(explanation, language)
+            st.session_state["voice_audio_out"] = audio_out
+            st.rerun()
+        except QuotaError as qe:
+            st.warning(str(qe))
+        except Exception as e:
+            st.error(f"⚠️ Unexpected error: {e}")
 
     # Render persisted card if exists
     if st.session_state["voice_transcribed"]:
-        st.success(f"📝 You asked: **{st.session_state['voice_transcribed']}**")
         render_explanation_card(st.session_state["voice_transcribed"], st.session_state["voice_explanation"])
         if st.session_state["voice_audio_out"]:
             st.audio(st.session_state["voice_audio_out"], format="audio/mp3")
     elif audio_bytes and not st.session_state["voice_transcribed"]:
         st.error("❌ Could not understand the audio. Please try speaking clearly or use text mode.")
-    elif not audio_bytes:
+    elif not audio_bytes and not st.session_state["voice_transcribed"]:
         render_welcome_info()
 
 # ══════════════════════════════════════════════════════════════════════════════
