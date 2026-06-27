@@ -20,7 +20,7 @@ st.set_page_config(
 # Custom global padding adjustments
 st.markdown("""
 <style>
-    .block-container { padding-top: 1.5rem; }
+    .block-container { padding-top: 5.5rem !important; }
     footer { visibility: hidden; }
 </style>
 """, unsafe_allow_html=True)

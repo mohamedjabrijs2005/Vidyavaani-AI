@@ -11,7 +11,8 @@ def render_header():
         html, body, .stApp, [class*="css"] {
             font-family: 'Outfit', sans-serif !important;
         }
-        .block-container { padding-top: 1.2rem !important; }
+        .block-container { padding-top: 5.5rem !important; }
+        header[data-testid="stHeader"] { background: transparent !important; }
         footer { visibility: hidden; }
         #MainMenu { visibility: hidden; }
 
