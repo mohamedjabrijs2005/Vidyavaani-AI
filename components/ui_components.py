@@ -157,6 +157,37 @@ def render_header():
         .vv-score-card h4 { color: #0369a1 !important; font-size: 1.25rem !important; margin: 0 0 0.3rem 0 !important; }
         .vv-score-card p  { color: #0c4a6e; margin: 0; font-size: 0.95rem; }
 
+        /* ── Voice Assistant Panel ────────────────── */
+        .vv-voice-card {
+            background: linear-gradient(135deg, #162a45 0%, #0c1828 100%);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 2.2rem 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 16px 36px rgba(0,0,0,0.25);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .vv-voice-title {
+            color: #ffffff !important;
+            font-size: 1.4rem !important;
+            font-weight: 700 !important;
+            margin-bottom: 0.6rem !important;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .vv-voice-desc {
+            color: #94a3b8 !important;
+            font-size: 0.98rem !important;
+            line-height: 1.5;
+            max-width: 540px;
+            margin: 0 auto !important;
+        }
+
         /* ── Buttons ───────────────────────────────── */
         .stButton > button {
             background: linear-gradient(135deg, #1a73e8, #1558b0) !important;

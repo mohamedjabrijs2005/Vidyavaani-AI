@@ -122,15 +122,22 @@ if mode == "📖 Explain Concept":
 # ══════════════════════════════════════════════════════════════════════════════
 elif mode == "🎤 Voice Input":
     st.markdown("## 🎤 Ask by Voice")
-    st.markdown("Record your question and the AI will explain it in your language.")
-    st.info("🎙️ Click the microphone button below, speak your question, then click again to stop.")
+    
+    st.markdown("""
+    <div class="vv-voice-card">
+        <div class="vv-voice-title">🎙️ Intelligent Voice Assistant</div>
+        <div class="vv-voice-desc">Click the microphone below to start speaking. Tell the AI what you want to learn (English, Tamil, or Hinglish) and click it again to stop.</div>
+    </div>
+    """, unsafe_allow_html=True)
 
-    audio_bytes = audio_recorder(
-        text="Click to record",
-        recording_color="#e8533a",
-        neutral_color="#1a73e8",
-        icon_size="2x",
-    )
+    col_l, col_c, col_r = st.columns([1, 1, 1])
+    with col_c:
+        audio_bytes = audio_recorder(
+            text="Tap to Speak",
+            recording_color="#ef4444",
+            neutral_color="#1a73e8",
+            icon_size="3x",
+        )
 
     # Initialize voice session states
     if "voice_audio" not in st.session_state:

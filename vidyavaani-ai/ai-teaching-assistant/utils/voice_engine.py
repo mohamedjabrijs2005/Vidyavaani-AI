@@ -45,6 +45,18 @@ def transcribe_audio(audio_bytes: bytes) -> str:
             "SpeechRecognition is not installed. Please install it with `pip install SpeechRecognition` "
             "or add `SpeechRecognition==3.10.4` to requirements.txt."
         ) from err
+    # Convert WebM/OGG/other formats to standard mono 16kHz WAV using pydub
+    try:
+        from pydub import AudioSegment
+        audio_segment = AudioSegment.from_file(io.BytesIO(audio_bytes))
+        audio_segment = audio_segment.set_frame_rate(16000).set_channels(1)
+        wav_io = io.BytesIO()
+        audio_segment.export(wav_io, format="wav")
+        audio_bytes = wav_io.getvalue()
+    except Exception as e:
+        # Fall back to using the raw bytes directly if pydub fails
+        pass
+
     import tempfile
     import os
 
