@@ -133,12 +133,11 @@ elif mode == "🎤 Voice Input":
     col_l, col_c, col_r = st.columns([1, 1, 1])
     with col_c:
         audio_bytes = audio_recorder(
-            text="",
+            text="🎙️ Tap to Speak",
             recording_color="#ef4444",
             neutral_color="#1a73e8",
-            icon_size="3x",
+            icon_size="2.5x",
         )
-        st.markdown("<div style='text-align: center; color: #1a73e8; font-weight: 700; font-size: 1.25rem; margin-top: 0.6rem;'>Tap to Speak</div>", unsafe_allow_html=True)
 
     # Initialize voice session states
     if "voice_audio" not in st.session_state:
