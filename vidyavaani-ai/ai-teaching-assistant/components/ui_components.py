@@ -2,8 +2,23 @@ import streamlit as st
 import os
 
 def render_header():
-    """Inject premium CSS and render the main header banner."""
-    st.markdown("""
+    """Inject premium CSS and render the main header banner with the logo."""
+    import base64
+    logo_html = ""
+    for path in ["assets/logo.png", "../assets/logo.png", "../../assets/logo.png"]:
+        logo_path = os.path.join(os.path.dirname(__file__), "..", path)
+        logo_path = os.path.normpath(logo_path)
+        if os.path.exists(logo_path):
+            try:
+                with open(logo_path, "rb") as f:
+                    data = f.read()
+                    b64 = base64.b64encode(data).decode()
+                    logo_html = f'<img src="data:image/png;base64,{b64}" style="height: 60px; margin-bottom: 0.6rem; vertical-align: middle; filter: drop-shadow(0px 2px 8px rgba(0,0,0,0.15));">'
+                break
+            except Exception:
+                continue
+
+    st.markdown(f"""
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
 

@@ -9,10 +9,21 @@ from components.ui_components import (
     render_explanation_card, render_visual_card, render_quiz, render_welcome_info
 )
 
+from PIL import Image
+
+# Load VidyaVaani Logo
+logo_img = None
+for path in ["assets/logo.png", "../assets/logo.png", "../../assets/logo.png"]:
+    try:
+        logo_img = Image.open(path)
+        break
+    except Exception:
+        continue
+
 # ── Page Config ────────────────────────────────────────────────────────────────
 st.set_page_config(
     page_title="VidyaVaani AI – Teaching Assistant",
-    page_icon="🎓",
+    page_icon=logo_img if logo_img else "🌐",
     layout="wide",
     initial_sidebar_state="expanded"
 )
