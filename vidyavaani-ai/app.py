@@ -157,6 +157,23 @@ elif mode == "🎤 Voice Input":
                 st.session_state["voice_audio_out"] = None
             except Exception as e:
                 st.error(f"⚠️ Unexpected error: {e}")
+            else:
+                if transcribed:
+                    try:
+                        with st.spinner("🤔 Generating explanation..."):
+                            explanation = explain_concept(transcribed, language, grade)
+                        st.session_state["voice_explanation"] = explanation
+                        with st.spinner("🔊 Generating spoken answer..."):
+                            audio_out = text_to_speech(explanation, language)
+                        st.session_state["voice_audio_out"] = audio_out
+                    except QuotaError as qe:
+                        st.warning(str(qe))
+                    except Exception as e:
+                        st.error(f"⚠️ Unexpected error: {e}")
+                else:
+                    st.session_state["voice_transcribed"] = ""
+                    st.session_state["voice_explanation"] = ""
+                    st.session_state["voice_audio_out"] = None
 
     # Render persisted card if exists
     if st.session_state["voice_transcribed"]:
