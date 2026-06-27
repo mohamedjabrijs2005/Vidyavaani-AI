@@ -42,6 +42,7 @@ def render_header():
             border-radius: 10px !important;
         }
         section[data-testid="stSidebar"] [data-baseweb="select"] * {
+            background-color: transparent !important;
             color: #ffffff !important;
         }
         div[data-baseweb="popover"] [data-baseweb="menu"] {
