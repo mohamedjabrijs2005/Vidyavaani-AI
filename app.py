@@ -122,22 +122,15 @@ if mode == "📖 Explain Concept":
 # ══════════════════════════════════════════════════════════════════════════════
 elif mode == "🎤 Voice Input":
     st.markdown("## 🎤 Ask by Voice")
-    
-    st.markdown("""
-    <div class="vv-voice-card">
-        <div class="vv-voice-title">🎙️ Intelligent Voice Assistant</div>
-        <div class="vv-voice-desc">Click the microphone below to start speaking. Tell the AI what you want to learn (English, Tamil, or Hinglish) and click it again to stop.</div>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown("Record your question and the AI will explain it in your language.")
+    st.info("🎙️ Click the microphone button below, speak your question, then click again to stop.")
 
-    col_l, col_c, col_r = st.columns([1, 1, 1])
-    with col_c:
-        audio_bytes = audio_recorder(
-            text="🎙️ Tap to Speak",
-            recording_color="#ef4444",
-            neutral_color="#1a73e8",
-            icon_size="2.5x",
-        )
+    audio_bytes = audio_recorder(
+        text="Click to record",
+        recording_color="#e8533a",
+        neutral_color="#1a73e8",
+        icon_size="2x",
+    )
 
     # Initialize voice session states
     if "voice_audio" not in st.session_state:
@@ -149,21 +142,7 @@ elif mode == "🎤 Voice Input":
     if "voice_audio_out" not in st.session_state:
         st.session_state["voice_audio_out"] = None
 
-    # Google-style transcription input bar
-    concept_input = st.text_input(
-        "🔍 Spoken Concept / Question",
-        value=st.session_state["voice_transcribed"],
-        placeholder="Speak using the microphone above to transcribe your question...",
-        key="voice_concept_input"
-    )
-
-    # If the user edits the input manually, update session state
-    if concept_input != st.session_state["voice_transcribed"]:
-        st.session_state["voice_transcribed"] = concept_input
-        st.session_state["voice_explanation"] = ""
-        st.session_state["voice_audio_out"] = None
-
-    if audio_bytes and len(audio_bytes) > 5000:
+    if audio_bytes:
         # Check if the audio is new to prevent infinite loops on page rerun
         if st.session_state["voice_audio"] != audio_bytes:
             st.session_state["voice_audio"] = audio_bytes
@@ -171,30 +150,11 @@ elif mode == "🎤 Voice Input":
                 with st.spinner("🔍 Transcribing your voice..."):
                     transcribed = transcribe_audio(audio_bytes)
                 st.session_state["voice_transcribed"] = transcribed
-                # Trigger a rerun so the text input widget updates immediately with the transcription
-                st.rerun()
             except ImportError as ie:
                 st.error(f"❌ {ie}")
                 st.session_state["voice_transcribed"] = ""
                 st.session_state["voice_explanation"] = ""
                 st.session_state["voice_audio_out"] = None
-            except Exception as e:
-                st.error(f"❌ Transcription error: {e}")
-
-    # Generate explanation if we have a transcribed concept but no explanation yet
-    if st.session_state["voice_transcribed"] and not st.session_state["voice_explanation"]:
-        try:
-            with st.spinner("🤔 Generating explanation..."):
-                explanation = explain_concept(st.session_state["voice_transcribed"], language, grade)
-            st.session_state["voice_explanation"] = explanation
-            # Let the user manually generate narration by clicking "Speak" on the audio card if needed, or pre-generate it
-            with st.spinner("🔊 Generating spoken answer..."):
-                audio_out = text_to_speech(explanation, language)
-            st.session_state["voice_audio_out"] = audio_out
-            st.rerun()
-        except QuotaError as qe:
-            st.warning(str(qe))
-        except Exception as e:
             st.error(f"⚠️ Unexpected error: {e}")
 
     # Render persisted card if exists
