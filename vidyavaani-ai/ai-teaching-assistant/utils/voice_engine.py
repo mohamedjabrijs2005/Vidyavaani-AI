@@ -70,9 +70,7 @@ def transcribe_audio(audio_bytes: bytes) -> str:
             audio = recognizer.record(source)
         text = recognizer.recognize_google(audio)
         return text
-    except sr.UnknownValueError:
-        return ""
-    except sr.RequestError:
+    except Exception:
         return ""
     finally:
         os.unlink(tmp_path)

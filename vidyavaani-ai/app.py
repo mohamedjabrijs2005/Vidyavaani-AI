@@ -163,7 +163,7 @@ elif mode == "🎤 Voice Input":
         st.session_state["voice_explanation"] = ""
         st.session_state["voice_audio_out"] = None
 
-    if audio_bytes:
+    if audio_bytes and len(audio_bytes) > 5000:
         # Check if the audio is new to prevent infinite loops on page rerun
         if st.session_state["voice_audio"] != audio_bytes:
             st.session_state["voice_audio"] = audio_bytes
@@ -202,7 +202,7 @@ elif mode == "🎤 Voice Input":
         render_explanation_card(st.session_state["voice_transcribed"], st.session_state["voice_explanation"])
         if st.session_state["voice_audio_out"]:
             st.audio(st.session_state["voice_audio_out"], format="audio/mp3")
-    elif audio_bytes and not st.session_state["voice_transcribed"]:
+    elif audio_bytes and len(audio_bytes) > 5000 and not st.session_state["voice_transcribed"]:
         st.error("❌ Could not understand the audio. Please try speaking clearly or use text mode.")
     elif not audio_bytes and not st.session_state["voice_transcribed"]:
         render_welcome_info()
