@@ -119,14 +119,17 @@ Format:
 
 def get_visual_description(concept: str) -> str:
     """
-    Returns a simple visual description / diagram in text/emoji format
-    suitable for displaying as a concept card.
+    Returns a simple visual description / diagram in markdown table format
+    suitable for displaying as a structured concept table.
     """
     prompt = f"""
-Create a simple visual concept map using plain text, emojis, and ASCII for:
+Create a highly structured, elegant Markdown table representing the visual concept map/diagram flow for:
 "{concept}"
 
-Use arrows (→), boxes made of dashes, and emojis to make it visually engaging.
-Keep it under 15 lines. No markdown headers. Suitable for a school smartboard display.
+The table should outline the stages, processes, or parts of the concept with clear descriptions and relevant emojis.
+Structure columns as follows:
+| Stage/Part | Process/Description | Visual Icon |
+
+Include 4 to 8 clear steps/parts. Return ONLY the markdown table. No explanation text outside.
 """
     return _safe_generate(prompt)

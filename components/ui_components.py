@@ -312,10 +312,8 @@ def render_explanation_card(concept: str, explanation: str):
 
 
 def render_visual_card(visual_text: str):
-    """Render a dark-themed visual concept map."""
-    st.markdown(f"""
-    <div class="vv-visual-card">{visual_text}</div>
-    """, unsafe_allow_html=True)
+    """Render a visual concept map as a structured table."""
+    st.markdown(visual_text)
 
 
 def render_quiz(questions: list[dict]):
