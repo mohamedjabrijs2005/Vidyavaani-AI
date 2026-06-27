@@ -263,8 +263,6 @@ elif mode == "🗺️ Visual Map":
 
     # Render persisted card if exists
     if st.session_state["visual_map"]:
-    # Render persisted card if exists
-    if st.session_state["visual_map"]:
         st.markdown("### 🎬 Media & Reference Hub")
         v_concept = st.session_state["visual_concept"]
         encoded_concept = v_concept.replace(" ", "+")
