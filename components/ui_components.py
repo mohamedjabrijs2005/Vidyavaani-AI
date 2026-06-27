@@ -340,7 +340,7 @@ def render_quiz(questions: list[dict]):
 
         key_ans = f"q_{i}_ans"
         saved_ans = st.session_state["quiz_answers"].get(key_ans, None)
-        default_index = 0
+        default_index = None
         if saved_ans in q["options"]:
             default_index = q["options"].index(saved_ans)
 
@@ -357,12 +357,15 @@ def render_quiz(questions: list[dict]):
         checked = st.session_state["quiz_checked"].get(key_checked, False)
 
         if st.button(f"✅ Check Answer #{i+1}", key=f"btn_check_{i}"):
-            st.session_state["quiz_checked"][key_checked] = True
-            checked = True
+            if not user_ans:
+                st.warning("⚠️ Please select an option first!")
+            else:
+                st.session_state["quiz_checked"][key_checked] = True
+                checked = True
 
-        if checked:
+        if checked and user_ans:
             correct_letter = q["answer"].strip().upper()
-            chosen_letter = user_ans[0].upper() if user_ans else ""
+            chosen_letter = user_ans[0].upper()
             if chosen_letter == correct_letter:
                 st.success(f"✅ **Correct!** — {q.get('explanation', '')}")
             else:
