@@ -34,7 +34,7 @@ Government school students in India often struggle with complex concepts due to 
 
 ---
 
-## 🔄 Recent Updates & Corrections (June 27, 2026)
+## 🔄 Recent Updates
 
 We rolled out a series of enhancements to polish classroom utility, user interface, and assistant responsiveness:
 
