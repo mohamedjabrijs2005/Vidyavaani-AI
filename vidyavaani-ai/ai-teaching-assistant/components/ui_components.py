@@ -17,7 +17,7 @@ def render_header():
 
         /* ── Sidebar — dark premium ────────────────── */
         section[data-testid="stSidebar"] {
-            background: linear-gradient(180deg, #0d1b2a 0%, #1a2e44 100%) !important;
+            background: linear-gradient(180deg, #0b192c 0%, #1d3557 100%) !important;
             border-right: 1px solid rgba(255,255,255,0.06);
         }
         section[data-testid="stSidebar"] h1,
