@@ -1,4 +1,4 @@
-# 🎓 VidyaVaani AI — Voice-Enabled Teaching Assistant
+# VidyaVaani AI — Voice-Enabled Teaching Assistant
 
 > Round 2 Assignment Submission | Connecting Dreams Foundation – AI4Good Track
 
@@ -29,8 +29,21 @@ Government school students in India often struggle with complex concepts due to 
 | 📖 Concept Explainer | Type any topic → get a clear, grade-appropriate explanation |
 | 🎤 Voice Input | Speak your question → AI answers in your language |
 | 🧠 Quiz Generator | Auto-generated MCQs with instant feedback |
-| 🗺️ Visual Map | ASCII/emoji concept diagram for smartboard display |
+| 🗺️ Visual Map | Elegant markdown concept table & resource links for smartboard display |
 | 🔊 Text-to-Speech | Spoken answers in Tamil, Hindi, or English |
+
+---
+
+## 🔄 Recent Updates & Corrections (June 27, 2026)
+
+We rolled out a series of enhancements to polish classroom utility, user interface, and assistant responsiveness:
+
+- **🎙️ Voice Workflow Restoration**: Returned the voice processing code to a simplified, highly responsive direct-byte transcription using `SpeechRecognition` to solve user transcription timeouts.
+- **🧠 Zero Pre-Selection Quizzes**: Set the default MCQ selection index to `None` so that radio options load clean and unselected. Added validation checks preventing empty answers.
+- **🗺️ Tabular Visual Maps**: Prompted the AI engine to generate concepts inside structured Markdown tables instead of plain ASCII-art diagrams.
+- **🎬 Interactive Classroom Media Hub**: Swapped visual map text summaries for a classroom dashboard containing curated quick links to Google Diagrams, YouTube videos, Khan Academy courses, and Wikipedia resources.
+- **🎨 Logo Integration**: Embedded base64 encoded official VidyaVaani logos across page favicon configs and main headers, removing all standard graduation cap emojis.
+- **📱 Clean Mode Selector UI**: Hided standard circular radio buttons inside the sidebar sidebar tab selector.
 
 ---
 
