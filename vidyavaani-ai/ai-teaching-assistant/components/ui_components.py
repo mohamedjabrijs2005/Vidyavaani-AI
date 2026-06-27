@@ -347,3 +347,23 @@ def render_quiz(questions: list[dict]):
             <p>Keep it up! Every question brings you closer to mastery.</p>
         </div>
         """, unsafe_allow_html=True)
+
+
+def render_welcome_info():
+    """Render a premium overview and benefits card when no topic is searched yet."""
+    st.markdown("""
+    <div class="vv-card" style="border-left: 5px solid #1a73e8; background: linear-gradient(to right, #f8fafc, #ffffff); margin-top: 1.5rem;">
+        <h3 style="color: #1a73e8; font-weight: 700; margin-top: 0; margin-bottom: 0.8rem;">💡 About VidyaVaani AI</h3>
+        <p style="color: #334155; font-size: 0.98rem; line-height: 1.6; margin-bottom: 1.2rem;">
+            <b>VidyaVaani AI</b> is an intelligent, voice-first learning assistant designed to bridge language barriers and provide grade-appropriate simplification for government school students across India. By offering multi-lingual simplified explanations, interactive quizzes, and visual smartboard diagrams, we make learning engaging, accessible, and intuitive.
+        </p>
+        <h4 style="color: #0f172a; font-weight: 600; margin-bottom: 0.6rem;">🌟 Key Benefits:</h4>
+        <ul style="color: #475569; font-size: 0.95rem; line-height: 1.7; padding-left: 1.2rem; margin: 0;">
+            <li>🗣️ <b>Voice-First Learning:</b> Students can ask questions by voice (Tamil, Hinglish, or English) without needing keyboard skills.</li>
+            <li>📈 <b>Grade-Adaptive Simplification:</b> Explanations are custom-tailored to the vocabulary of Grades 6-8, 9-10, or 11-12.</li>
+            <li>🧠 <b>Interactive Quizzes:</b> Self-assessment multiple-choice questions with instant detailed explanations.</li>
+            <li>🗺️ <b>Smartboard-Ready Visuals:</b> Plain-text concept maps and diagrams designed for easy display on classroom smartboards.</li>
+            <li>🔊 <b>Text-to-Speech Narration:</b> Listen to correct pronunciation and friendly audio explanations.</li>
+        </ul>
+    </div>
+    """, unsafe_allow_html=True)

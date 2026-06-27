@@ -6,7 +6,7 @@ from utils.ai_engine import configure_groq, explain_concept, generate_quiz, get_
 from utils.voice_engine import text_to_speech, transcribe_audio
 from components.ui_components import (
     render_header, render_sidebar,
-    render_explanation_card, render_visual_card, render_quiz
+    render_explanation_card, render_visual_card, render_quiz, render_welcome_info
 )
 
 # ── Page Config ────────────────────────────────────────────────────────────────
@@ -114,6 +114,8 @@ if mode == "📖 Explain Concept":
         render_explanation_card(st.session_state["explain_concept"], st.session_state["explain_result"])
         if st.session_state["explain_audio"]:
             st.audio(st.session_state["explain_audio"], format="audio/mp3")
+    else:
+        render_welcome_info()
 
 # ══════════════════════════════════════════════════════════════════════════════
 # MODE 2 — Voice Input
@@ -179,6 +181,8 @@ elif mode == "🎤 Voice Input":
             st.audio(st.session_state["voice_audio_out"], format="audio/mp3")
     elif audio_bytes and not st.session_state["voice_transcribed"]:
         st.error("❌ Could not understand the audio. Please try speaking clearly or use text mode.")
+    elif not audio_bytes:
+        render_welcome_info()
 
 # ══════════════════════════════════════════════════════════════════════════════
 # MODE 3 — Quiz Me
@@ -214,6 +218,8 @@ elif mode == "🧠 Quiz Me":
 
     if "quiz_questions" in st.session_state:
         render_quiz(st.session_state["quiz_questions"])
+    else:
+        render_welcome_info()
 
 # ══════════════════════════════════════════════════════════════════════════════
 # MODE 4 — Visual Map
@@ -269,6 +275,8 @@ elif mode == "🗺️ Visual Map":
         
         if st.session_state["visual_audio"]:
             st.audio(st.session_state["visual_audio"], format="audio/mp3")
+    else:
+        render_welcome_info()
 
 # ── Footer ─────────────────────────────────────────────────────────────────────
 st.markdown("---")
