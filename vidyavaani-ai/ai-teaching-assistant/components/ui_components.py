@@ -371,12 +371,5 @@ def render_welcome_info():
         """, unsafe_allow_html=True)
         
     with col_video:
-        st.markdown("""
-        <div class="vv-card" style="border-left: 5px solid #ff0000; background: linear-gradient(to right, #fff5f5, #ffffff); margin-top: 1.5rem; height: 100%;">
-            <h3 style="color: #ff0000; font-weight: 700; margin-top: 0; margin-bottom: 0.8rem;">🎬 Classroom AI Spotlight</h3>
-            <p style="color: #4b5563; font-size: 0.98rem; line-height: 1.6; margin-bottom: 1.2rem;">
-                Learn how artificial intelligence is transforming modern classrooms and enabling personalized learning experiences.
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
-        st.video("https://www.youtube.com/watch?v=Jb-8gN65M3M")
+        st.markdown("<div style='margin-top: 1.5rem;'></div>", unsafe_allow_html=True)
+        st.video("https://www.youtube.com/watch?v=hJP5GqnTrNo")
