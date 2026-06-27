@@ -365,5 +365,7 @@ def render_welcome_info():
             <li>🗺️ <b>Smartboard-Ready Visuals:</b> Plain-text concept maps and diagrams designed for easy display on classroom smartboards.</li>
             <li>🔊 <b>Text-to-Speech Narration:</b> Listen to correct pronunciation and friendly audio explanations.</li>
         </ul>
+        <h4 style="color: #0f172a; font-weight: 600; margin-top: 1.2rem; margin-bottom: 0.8rem;">🎬 AI in Education & Classrooms:</h4>
     </div>
     """, unsafe_allow_html=True)
+    st.video("https://www.youtube.com/watch?v=Jb-8gN65M3M")
