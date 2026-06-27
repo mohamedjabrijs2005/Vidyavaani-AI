@@ -187,6 +187,13 @@ def render_header():
             max-width: 540px;
             margin: 0 auto !important;
         }
+        
+        /* Centering the audio recorder custom component iframe */
+        iframe[title="audio_recorder_streamlit.audio_recorder"] {
+            display: block !important;
+            margin: 0 auto !important;
+            min-height: 80px !important;
+        }
 
         /* ── Buttons ───────────────────────────────── */
         .stButton > button {
