@@ -52,19 +52,25 @@ def render_header():
         div[data-baseweb="popover"] [data-baseweb="menu"] * {
             color: #ffffff !important;
         }
-        section[data-testid="stSidebar"] [data-baseweb="radio"] > div {
+        section[data-testid="stSidebar"] [data-baseweb="radio"] label {
             background-color: rgba(255,255,255,0.08) !important;
             border-radius: 10px !important;
             padding: 0.6rem 0.8rem !important;
-            margin-bottom: 0.3rem !important;
-            border: 1px solid rgba(255,255,255,0.12);
-            transition: background 0.2s;
+            margin-bottom: 0.4rem !important;
+            border: 1px solid rgba(255,255,255,0.12) !important;
+            transition: all 0.2s ease;
+            width: 100% !important;
+            cursor: pointer !important;
+        }
+        section[data-testid="stSidebar"] [data-baseweb="radio"] label > div:first-child {
+            display: none !important;
         }
         section[data-testid="stSidebar"] [data-baseweb="radio"] * {
             color: #ffffff !important;
         }
-        section[data-testid="stSidebar"] [data-baseweb="radio"] > div:hover {
-            background-color: rgba(26,115,232,0.3) !important;
+        section[data-testid="stSidebar"] [data-baseweb="radio"] label:hover {
+            background-color: rgba(26,115,232,0.25) !important;
+            border-color: rgba(26,115,232,0.4) !important;
         }
         section[data-testid="stSidebar"] hr {
             border-color: rgba(255,255,255,0.1) !important;
