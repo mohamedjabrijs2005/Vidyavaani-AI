@@ -263,35 +263,33 @@ elif mode == "🗺️ Visual Map":
 
     # Render persisted card if exists
     if st.session_state["visual_map"]:
-        col_v, col_m = st.columns([1, 1])
-        with col_v:
-            st.markdown("### 🗺️ Smartboard Diagram Table")
-            render_visual_card(st.session_state["visual_map"])
-        with col_m:
-            st.markdown("### 🎬 Media & Reference Hub")
-            v_concept = st.session_state["visual_concept"]
-            encoded_concept = v_concept.replace(" ", "+")
-            images_url = f"https://www.google.com/search?tbm=isch&q={encoded_concept}+diagram"
-            youtube_url = f"https://www.youtube.com/results?search_query={encoded_concept}+educational+explanation"
-            khan_url = f"https://www.khanacademy.org/search?page_search_query={encoded_concept}"
-            wikipedia_url = f"https://en.wikipedia.org/wiki/Special:Search?search={encoded_concept}"
-            
-            st.markdown(f"""
-            <div class="vv-card" style="border-left: 5px solid #1a73e8; background: linear-gradient(to right, #f8fafc, #ffffff); padding: 1.6rem; border-radius: 16px; height: 100%;">
-                <h4 style="color: #1a73e8; font-weight: 700; margin-top: 0; margin-bottom: 0.8rem;">🎬 Classroom Resources</h4>
-                <p style="color: #475569; font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.4rem;">
-                    Click the buttons below to open curated interactive teaching resources for <b>{v_concept}</b>:
-                </p>
-                <div style="display: flex; flex-direction: column; gap: 0.8rem;">
-                    <a href="{images_url}" target="_blank" style="background: linear-gradient(135deg, #1a73e8, #1558b0); color: white !important; padding: 0.8rem 1.2rem; border-radius: 12px; text-decoration: none; font-weight: 600; display: block; text-align: center; box-shadow: 0 4px 12px rgba(26,115,232,0.2); font-size: 0.95rem;">📷 Open Diagram & Photo Gallery</a>
-                    <a href="{youtube_url}" target="_blank" style="background: linear-gradient(135deg, #ff0000, #cc0000); color: white !important; padding: 0.8rem 1.2rem; border-radius: 12px; text-decoration: none; font-weight: 600; display: block; text-align: center; box-shadow: 0 4px 12px rgba(255,0,0,0.2); font-size: 0.95rem;">🎥 Watch Educational Videos on YouTube</a>
-                    <a href="{khan_url}" target="_blank" style="background: linear-gradient(135deg, #0c6623, #084c1a); color: white !important; padding: 0.8rem 1.2rem; border-radius: 12px; text-decoration: none; font-weight: 600; display: block; text-align: center; box-shadow: 0 4px 12px rgba(12,102,35,0.2); font-size: 0.95rem;">📖 Lessons on Khan Academy</a>
-                    <a href="{wikipedia_url}" target="_blank" style="background: linear-gradient(135deg, #374151, #1f2937); color: white !important; padding: 0.8rem 1.2rem; border-radius: 12px; text-decoration: none; font-weight: 600; display: block; text-align: center; box-shadow: 0 4px 12px rgba(55,65,81,0.2); font-size: 0.95rem;">🧠 Wikipedia Academic Articles</a>
-                </div>
+    # Render persisted card if exists
+    if st.session_state["visual_map"]:
+        st.markdown("### 🎬 Media & Reference Hub")
+        v_concept = st.session_state["visual_concept"]
+        encoded_concept = v_concept.replace(" ", "+")
+        images_url = f"https://www.google.com/search?tbm=isch&q={encoded_concept}+diagram"
+        youtube_url = f"https://www.youtube.com/results?search_query={encoded_concept}+educational+explanation"
+        khan_url = f"https://www.khanacademy.org/search?page_search_query={encoded_concept}"
+        wikipedia_url = f"https://en.wikipedia.org/wiki/Special:Search?search={encoded_concept}"
+        
+        st.markdown(f"""
+        <div class="vv-card" style="border-left: 5px solid #1a73e8; background: linear-gradient(to right, #f8fafc, #ffffff); padding: 1.6rem; border-radius: 16px; margin-bottom: 1.5rem;">
+            <h4 style="color: #1a73e8; font-weight: 700; margin-top: 0; margin-bottom: 0.8rem;">🎬 Classroom Resources</h4>
+            <p style="color: #475569; font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.4rem;">
+                Click the buttons below to open curated interactive teaching resources for <b>{v_concept}</b>:
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+                <a href="{images_url}" target="_blank" style="background: linear-gradient(135deg, #1a73e8, #1558b0); color: white !important; padding: 0.8rem 1.2rem; border-radius: 12px; text-decoration: none; font-weight: 600; display: block; text-align: center; box-shadow: 0 4px 12px rgba(26,115,232,0.2); font-size: 0.95rem;">📷 Open Diagram & Photo Gallery</a>
+                <a href="{youtube_url}" target="_blank" style="background: linear-gradient(135deg, #ff0000, #cc0000); color: white !important; padding: 0.8rem 1.2rem; border-radius: 12px; text-decoration: none; font-weight: 600; display: block; text-align: center; box-shadow: 0 4px 12px rgba(255,0,0,0.2); font-size: 0.95rem;">🎥 Watch Educational Videos on YouTube</a>
+                <a href="{khan_url}" target="_blank" style="background: linear-gradient(135deg, #0c6623, #084c1a); color: white !important; padding: 0.8rem 1.2rem; border-radius: 12px; text-decoration: none; font-weight: 600; display: block; text-align: center; box-shadow: 0 4px 12px rgba(12,102,35,0.2); font-size: 0.95rem;">📖 Lessons on Khan Academy</a>
+                <a href="{wikipedia_url}" target="_blank" style="background: linear-gradient(135deg, #374151, #1f2937); color: white !important; padding: 0.8rem 1.2rem; border-radius: 12px; text-decoration: none; font-weight: 600; display: block; text-align: center; box-shadow: 0 4px 12px rgba(55,65,81,0.2); font-size: 0.95rem;">🧠 Wikipedia Academic Articles</a>
             </div>
-            """, unsafe_allow_html=True)
-    else:
-        render_welcome_info()
+        </div>
+        """, unsafe_allow_html=True)
+
+        st.markdown("### 🗺️ Smartboard Diagram Table")
+        render_visual_card(st.session_state["visual_map"])
 
 # ── Footer ─────────────────────────────────────────────────────────────────────
 st.markdown("---")
