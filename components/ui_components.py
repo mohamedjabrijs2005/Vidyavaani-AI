@@ -18,7 +18,7 @@ def render_header():
             except Exception:
                 continue
 
-    st.markdown(f"""
+    st.markdown("""
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
@@ -260,7 +260,9 @@ def render_header():
             margin-bottom: 1.4rem;
         }
     </style>
+    """, unsafe_allow_html=True)
 
+    st.markdown(f"""
     <div class="vv-banner">
         <div>{logo_html}</div>
         <h1 style="margin-top: 0.3rem !important;">VidyaVaani AI</h1>
