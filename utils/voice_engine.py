@@ -33,7 +33,7 @@ def autoplay_audio(audio_bytes: bytes):
 
 
 # ── Speech → Text (from uploaded/recorded WAV bytes) ──────────────────────────
-def transcribe_audio(audio_bytes: bytes, language: str = "English") -> str:
+def transcribe_audio(audio_bytes: bytes) -> str:
     """
     Transcribe audio bytes to text using Google Web Speech API (free, online).
     Returns transcribed string or empty string on failure.
@@ -53,17 +53,10 @@ def transcribe_audio(audio_bytes: bytes, language: str = "English") -> str:
         tmp.write(audio_bytes)
         tmp_path = tmp.name
 
-    # Map application language to google speech recognition locale
-    lang_code = {
-        "Tamil": "ta-IN",
-        "Hinglish": "hi-IN",
-        "English": "en-IN",
-    }.get(language, "en-US")
-
     try:
         with sr.AudioFile(tmp_path) as source:
             audio = recognizer.record(source)
-        text = recognizer.recognize_google(audio, language=lang_code)
+        text = recognizer.recognize_google(audio)
         return text
     except sr.UnknownValueError:
         return ""

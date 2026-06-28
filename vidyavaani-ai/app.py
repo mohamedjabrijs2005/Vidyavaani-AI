@@ -159,7 +159,7 @@ elif mode == "🎤 Voice Input":
             st.session_state["voice_audio"] = audio_bytes
             try:
                 with st.spinner("🔍 Transcribing your voice..."):
-                    transcribed = transcribe_audio(audio_bytes, language)
+                    transcribed = transcribe_audio(audio_bytes)
                 st.session_state["voice_transcribed"] = transcribed
             except ImportError as ie:
                 st.error(f"❌ {ie}")
