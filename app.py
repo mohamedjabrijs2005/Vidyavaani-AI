@@ -157,41 +157,34 @@ elif mode == "🎤 Voice Input":
         # Check if the audio is new to prevent infinite loops on page rerun
         if st.session_state["voice_audio"] != audio_bytes:
             st.session_state["voice_audio"] = audio_bytes
-            try:
-                with st.spinner("🔍 Transcribing your voice..."):
-                    transcribed = transcribe_audio(audio_bytes)
-                st.session_state["voice_transcribed"] = transcribed
-            except ImportError as ie:
-                st.error(f"❌ {ie}")
+            with st.spinner("🔍 Transcribing your voice..."):
+                transcribed = transcribe_audio(audio_bytes)
+            st.session_state["voice_transcribed"] = transcribed
+
+            if transcribed:
+                try:
+                    with st.spinner("🤔 Generating explanation..."):
+                        explanation = explain_concept(transcribed, language, grade)
+                    st.session_state["voice_explanation"] = explanation
+                    with st.spinner("🔊 Generating spoken answer..."):
+                        audio_out = text_to_speech(explanation, language)
+                    st.session_state["voice_audio_out"] = audio_out
+                except QuotaError as qe:
+                    st.warning(str(qe))
+                except Exception as e:
+                    st.error(f"⚠️ Unexpected error: {e}")
+            else:
                 st.session_state["voice_transcribed"] = ""
                 st.session_state["voice_explanation"] = ""
                 st.session_state["voice_audio_out"] = None
-            except Exception as e:
-                st.error(f"⚠️ Unexpected error: {e}")
-            else:
-                if transcribed:
-                    try:
-                        with st.spinner("🤔 Generating explanation..."):
-                            explanation = explain_concept(transcribed, language, grade)
-                        st.session_state["voice_explanation"] = explanation
-                        with st.spinner("🔊 Generating spoken answer..."):
-                            audio_out = text_to_speech(explanation, language)
-                        st.session_state["voice_audio_out"] = audio_out
-                    except QuotaError as qe:
-                        st.warning(str(qe))
-                    except Exception as e:
-                        st.error(f"⚠️ Unexpected error: {e}")
-                else:
-                    st.session_state["voice_transcribed"] = ""
-                    st.session_state["voice_explanation"] = ""
-                    st.session_state["voice_audio_out"] = None
 
     # Render persisted card if exists
     if st.session_state["voice_transcribed"]:
+        st.success(f"📝 You asked: **{st.session_state['voice_transcribed']}**")
         render_explanation_card(st.session_state["voice_transcribed"], st.session_state["voice_explanation"])
         if st.session_state["voice_audio_out"]:
             st.audio(st.session_state["voice_audio_out"], format="audio/mp3")
-    elif audio_bytes and len(audio_bytes) > 5000 and not st.session_state["voice_transcribed"]:
+    elif audio_bytes and not st.session_state["voice_transcribed"]:
         st.error("❌ Could not understand the audio. Please try speaking clearly or use text mode.")
     elif not audio_bytes and not st.session_state["voice_transcribed"]:
         render_welcome_info()
